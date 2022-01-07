@@ -1,0 +1,19 @@
+{
+  "name": "pm2-web-api",
+  "version": "1.0.0",
+  "description": "pm2's api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "keywords": [
+    "pm2",
+    "api"
+  ],
+  "author": "igzhang",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "pm2": "^5.1.2"
+  }
+}
