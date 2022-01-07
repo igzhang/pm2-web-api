@@ -31,12 +31,27 @@ router.post('/', function(req, res, next) {
 })
 
 
-router.put('/stop/:processIDorName', function(req, res, next) {
-    if (!req.params.processIDorName) {
+router.put('/stop', function(req, res, next) {
+    if (!req.body.process) {
         res.status(400).send('processID or name cannot be null');
         return
     }
-    pm2.stop(req.params.processIDorName, function(err) {
+    pm2.stop(req.body.process, function(err) {
+        if (err) {
+            res.status(500).send(err.message);
+            return
+        }
+        res.send('success');
+    })
+})
+
+
+router.put('/restart', function(req, res, next) {
+    if (req.body.process == null) {
+        res.status(400).send('processID or name cannot be null');
+        return
+    }
+    pm2.restart(req.body.process, req.body.options, function(err) {
         if (err) {
             res.status(500).send(err.message);
             return
